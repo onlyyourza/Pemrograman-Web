@@ -2,8 +2,8 @@
 
 Repo ini isinya tugas praktikum mata kuliah Desain dan Pemrograman Web, semester 3.
 
-Nama: Mafaza Husnadani
-Kelas: SIB-2G
+- Nama: Mafaza Husnadani
+- Kelas: SIB-2G
 
 Studi kasusnya satu aplikasi yang dikerjakan terus menerus sepanjang semester, namanya
 SIMPUS-Mini, sistem perpustakaan sederhana untuk mendata buku, anggota, dan peminjaman.
