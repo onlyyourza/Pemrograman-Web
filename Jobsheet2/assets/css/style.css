@@ -75,7 +75,7 @@ main section:nth-of-type(2) h2 {
 
 main section:nth-of-type(2) {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
@@ -139,6 +139,13 @@ td button:first-of-type {
 
 td button:last-of-type {
     background-color: #d9534f;
+    color: #fff;
+}
+
+/* Latihan 10.4 no. 3 -- tombol Details butuh class sendiri, karena
+   :first-of-type/:last-of-type memilih berdasarkan posisi, bukan makna. */
+td button.btn-detail {
+    background-color: #55677a;
     color: #fff;
 }
 
