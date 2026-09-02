@@ -1,20 +1,30 @@
 # Pemrograman Web
 
-Repositori pengumpulan tugas praktikum mata kuliah **Desain dan Pemrograman Web** — Semester 3.
+Repo ini isinya tugas praktikum mata kuliah Desain dan Pemrograman Web, semester 3.
 
-- Nama: Mafaza Husnadani
-- Kelas: SIB-2G
-- Studi kasus: **SIMPUS-Mini** (sistem perpustakaan mini)
-- Stack: HTML5, CSS3, JavaScript, PHP native, PostgreSQL
+Nama: Mafaza Husnadani
+Kelas: SIB-2G
+
+Studi kasusnya satu aplikasi yang dikerjakan terus menerus sepanjang semester, namanya
+SIMPUS-Mini, sistem perpustakaan sederhana untuk mendata buku, anggota, dan peminjaman.
 
 ## Daftar Jobsheet
 
-| Folder | Materi | Status |
-|---|---|---|
-| `Jobsheet1` | Struktur HTML5 semantic | Selesai |
-| `Jobsheet2` | Styling dasar CSS3 (box model, Flexbox, CSS Grid) | Selesai |
+| Folder | Materi |
+|---|---|
+| `Jobsheet1` | Struktur halaman pakai HTML5 semantic |
+| `Jobsheet2` | Styling dasar CSS3: box model, Flexbox, CSS Grid |
+
+## Cara menjalankan
+
+Sampai Jobsheet 2 belum butuh web server. Cukup buka `index.html` di folder jobsheet
+yang mau dilihat, langsung lewat browser.
 
 ## Catatan
 
-Setiap jobsheet adalah kelanjutan langsung dari jobsheet sebelumnya — kode yang dibuat
-di satu minggu dikembangkan lagi di minggu berikutnya, bukan proyek baru.
+Tiap jobsheet itu lanjutan dari jobsheet sebelumnya, bukan proyek baru. Jadi isi Jobsheet2
+sebenarnya file Jobsheet1 yang ditambahi CSS, bukan ditulis ulang dari nol. Struktur
+HTML-nya sengaja tidak diubah supaya kelihatan seberapa besar pengaruh CSS ke tampilan.
+
+Teknologi yang dipakai sepanjang semester: HTML5, CSS3, JavaScript, PHP native, dan
+PostgreSQL.
