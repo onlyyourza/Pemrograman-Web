@@ -12,6 +12,7 @@ Repositori pengumpulan tugas praktikum mata kuliah **Desain dan Pemrograman Web*
 | Folder | Materi | Status |
 |---|---|---|
 | `Jobsheet1` | Struktur HTML5 semantic | Selesai |
+| `Jobsheet2` | Styling dasar CSS3 (box model, Flexbox, CSS Grid) | Selesai |
 
 ## Catatan
 
