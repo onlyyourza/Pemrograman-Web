@@ -14,10 +14,11 @@ SIMPUS-Mini, sistem perpustakaan sederhana untuk mendata buku, anggota, dan pemi
 |---|---|
 | `Jobsheet1` | Struktur halaman pakai HTML5 semantic |
 | `Jobsheet2` | Styling dasar CSS3: box model, Flexbox, CSS Grid |
+| `Jobsheet3` | Responsive design: meta viewport, hamburger menu (checkbox hack), tabel scroll, media query |
 
 ## Cara menjalankan
 
-Sampai Jobsheet 2 belum butuh web server. Cukup buka `index.html` di folder jobsheet
+Sampai Jobsheet 3 belum butuh web server. Cukup buka `index.html` di folder jobsheet
 yang mau dilihat, langsung lewat browser.
 
 ## Catatan
