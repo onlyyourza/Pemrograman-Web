@@ -247,3 +247,10 @@ footer {
         max-width: 100%;
     }
 }
+
+/* Very wide monitors */
+@media (min-width: 1400px) {
+    main {
+        max-width: 1300px;
+    }
+}
