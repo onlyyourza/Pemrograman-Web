@@ -10,7 +10,7 @@ async function loadList(jsonFile, keys) {
 
     try {
         // simulate network delay so the loading indicator is visible
-        await new Promise((resolve) => setTimeout(resolve, 600));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
 
         const res = await fetch(jsonFile);
         if (!res.ok) {
