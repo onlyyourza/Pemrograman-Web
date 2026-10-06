@@ -6,7 +6,16 @@ require __DIR__ . '/../includes/connection.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+// Exercise 7.4 no. 3: server-side search. The keyword comes from outside ($_GET),
+// so it goes through prepare() + execute(). ILIKE = case-insensitive match.
+$keyword = trim($_GET['keyword'] ?? '');
+if ($keyword !== '') {
+    $stmt = $pdo->prepare("SELECT * FROM books WHERE title ILIKE :keyword ORDER BY id DESC");
+    $stmt->execute(['keyword' => '%' . $keyword . '%']);
+    $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
         <section>
             <h2>Book List</h2>
@@ -15,10 +24,11 @@ $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETC
                 <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['message']; ?></p>
             <?php endif; ?>
 
-            <div class="search-box">
+            <form class="search-box" method="get" action="list.php">
                 <label for="search-input">Search Book Title</label>
-                <input type="text" id="search-input" placeholder="Type book title...">
-            </div>
+                <input type="text" id="search-input" name="keyword" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Type book title...">
+                <button type="submit">Search</button>
+            </form>
 
             <div class="table-responsive">
             <table>
@@ -33,7 +43,11 @@ $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETC
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (empty($books)): ?>
+                    <?php if (empty($books) && $keyword !== ''): ?>
+                    <tr>
+                        <td colspan="6">No book title matches "<?php echo htmlspecialchars($keyword); ?>".</td>
+                    </tr>
+                    <?php elseif (empty($books)): ?>
                     <tr>
                         <td colspan="6">No book data yet. Please add one via the "Add Book" menu.</td>
                     </tr>
