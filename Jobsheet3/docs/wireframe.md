@@ -148,3 +148,37 @@ HTML translation: Full Name, Address and Email become `<label>` + `<input>`
 (Email uses `type="email"`, Phone uses `type="tel"`), Register becomes
 `<button type="submit">`, and the "(given by the system)" line is plain text,
 not an input.
+
+## Exercise 6.4 no. 2 — User Flow: Find Members with Overdue Loans
+
+The current design only stores the Borrow Date, so a loan period is needed
+first to know when a loan is late. This flow assumes a due date of
+borrow date + 7 days.
+
+```
+[Officer Sign In] -> [Dashboard] -> [Select "Borrowing" menu]
+        -> [Filter "Overdue" (not returned AND due date < today)]
+        -> [Overdue list, sorted by days late]
+        -> [Select a member] -> [Member Borrow History]
+        -> [Contact the member (phone) / Mark "Returned" when the book comes back]
+        -> [Back to Dashboard]
+```
+
+Wireframe of the overdue list used in this flow:
+
+```
++------------------------------------------------------------------------------+
+|  Overdue Loans                              [ All ] [ Overdue ]              |
+|------------------------------------------------------------------------------|
+|  Search member: [ member name ______ ]                                       |
+|                                                                              |
+|  Member        | Book           | Borrow | Due   | Days Late |               |
+|  Budi Santoso  | Bumi Manusia   | 01/09  | 08/09 | 12        | [History]     |
+|  Siti Aminah   | Laskar Pelangi | 05/09  | 12/09 | 8         | [History]     |
+|                                                                              |
+|  No overdue loans?  ->  "All loans are on time."                             |
++------------------------------------------------------------------------------+
+```
+
+The Dashboard can also get a fourth statistic card, `[Overdue]`, that
+opens this list directly.
