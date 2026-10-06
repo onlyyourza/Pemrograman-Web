@@ -28,13 +28,14 @@ $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETC
                         <th>Author</th>
                         <th>Year</th>
                         <th>Stock</th>
+                        <th>Date Added</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($books)): ?>
                     <tr>
-                        <td colspan="5">No book data yet. Please add one via the "Add Book" menu.</td>
+                        <td colspan="6">No book data yet. Please add one via the "Add Book" menu.</td>
                     </tr>
                     <?php else: ?>
                         <?php foreach ($books as $book): ?>
@@ -43,6 +44,7 @@ $books = $pdo->query("SELECT * FROM books ORDER BY id DESC")->fetchAll(PDO::FETC
                             <td><?php echo $book['author']; ?></td>
                             <td><?php echo $book['year']; ?></td>
                             <td><?php echo $book['stock']; ?></td>
+                            <td><?php echo date('d M Y H:i', strtotime($book['date_added'])); ?></td>
                             <td>
                                 <button type="button">Edit</button>
                                 <button type="button" class="btn-delete">Delete</button>
