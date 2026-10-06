@@ -26,12 +26,24 @@ $stmt = $pdo->prepare(
      VALUES (:name, :member_id, :address, :phone)
      RETURNING id"
 );
-$stmt->execute([
-    'name' => $name,
-    'member_id' => $memberId,
-    'address' => $address,
-    'phone' => $phone,
-]);
+try {
+    $stmt->execute([
+        'name' => $name,
+        'member_id' => $memberId,
+        'address' => $address,
+        'phone' => $phone,
+    ]);
+} catch (PDOException $e) {
+    // 23505 = unique_violation: member_id is UNIQUE, so the same number cannot be saved twice.
+    if ($e->getCode() === '23505') {
+        $message = "Member ID " . $memberId . " is already in use, please use a different number.";
+    } else {
+        $message = "Failed to save the member data, please try again.";
+    }
+    $_SESSION['flash'] = ['type' => 'error', 'message' => $message];
+    header('Location: add.php');
+    exit;
+}
 
 $_SESSION['flash'] = ['type' => 'success', 'message' => 'Member added successfully.'];
 header('Location: list.php');
