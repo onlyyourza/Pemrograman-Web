@@ -29,11 +29,16 @@ function initTableFilter() {
     const table = document.querySelector(".table-responsive table");
     if (!input || !table) return;
 
+    // only search one column: the index comes from data-column on the input
+    // (0 = first column if the attribute is missing)
+    const column = parseInt(input.dataset.column || "0", 10);
+
     input.addEventListener("keyup", function () {
         const keyword = input.value.toLowerCase();
         const rows = table.querySelectorAll("tbody tr");
         rows.forEach(function (row) {
-            const text = row.textContent.toLowerCase();
+            const cell = row.querySelectorAll("td")[column];
+            const text = cell ? cell.textContent.toLowerCase() : "";
             row.style.display = text.includes(keyword) ? "" : "none";
         });
     });
