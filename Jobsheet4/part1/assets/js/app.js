@@ -89,6 +89,15 @@ function initFormValidation() {
             }
         }
 
+        // ISBN is optional, but if filled it may only contain digits and hyphens
+        const isbn = form.querySelector("[name='isbn']");
+        if (isbn && isbn.value.trim() !== "" && !/^[0-9-]+$/.test(isbn.value.trim())) {
+            showError(isbn, "ISBN may only contain digits and hyphens.");
+            valid = false;
+        } else if (isbn) {
+            removeError(isbn);
+        }
+
         const stock = form.querySelector("[name='stock']");
         if (stock) {
             const value = parseInt(stock.value, 10);
