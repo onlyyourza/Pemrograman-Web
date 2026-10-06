@@ -182,3 +182,31 @@ Wireframe of the overdue list used in this flow:
 
 The Dashboard can also get a fourth statistic card, `[Overdue]`, that
 opens this list directly.
+
+## Exercise 6.4 no. 3 — Additional Edge Cases
+
+Recorded now so they are not forgotten when Login and Borrowing are coded:
+
+1. **The same book lent to the same member twice in a row.** If the member
+   still has an active (not returned) loan of that book, the second loan is
+   rejected with a message, instead of reducing the stock again.
+2. **The last copy chosen by two officers at the same time.** Both forms show
+   the book because stock was 1 when the page was opened. The stock must be
+   checked again at the moment Save is pressed, so only the first loan is
+   saved.
+3. **Returning a loan that is already "Returned".** A double click on
+   [Return] must not increase the stock twice.
+4. **Deleting a book or member that still has active loans.** Delete is
+   blocked (or the loans are handled first), otherwise the history points to
+   data that no longer exists.
+5. **Editing a book's stock below the number currently borrowed.** The stock
+   figure would become wrong when those books are returned.
+6. **A limit on active loans per member** (for example at most 3 books), so one
+   member cannot take most of the collection.
+7. **A Guest opening the Dashboard or Borrowing URL directly.** The page must
+   redirect to the Login page (already mentioned in the jobsheet, ch. 4 §4.5).
+8. **Wrong password entered many times.** Show one general message
+   ("Username or password is wrong") that does not reveal which field was
+   wrong, and consider a short lock after several failures.
+9. **Dates that make no sense**, such as a return date earlier than the borrow
+   date, or a borrow date in the future.
