@@ -12,11 +12,11 @@ $offset = ($page - 1) * $perPage;
 $keyword = trim($_GET['q'] ?? '');
 
 if ($keyword !== '') {
-    $count = $pdo->prepare("SELECT COUNT(*) FROM books WHERE title ILIKE :kw");
+    $count = $pdo->prepare("SELECT COUNT(*) FROM books WHERE title ILIKE :kw OR author ILIKE :kw");
     $count->execute(['kw' => '%' . $keyword . '%']);
     $totalRows = $count->fetchColumn();
 
-    $stmt = $pdo->prepare("SELECT * FROM books WHERE title ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
+    $stmt = $pdo->prepare("SELECT * FROM books WHERE title ILIKE :kw OR author ILIKE :kw ORDER BY id DESC LIMIT :limit OFFSET :offset");
     $stmt->bindValue('kw', '%' . $keyword . '%');
 } else {
     $totalRows = $pdo->query("SELECT COUNT(*) FROM books")->fetchColumn();
@@ -39,8 +39,8 @@ $totalPages = max(1, (int) ceil($totalRows / $perPage));
             <div class="search-box">
                 <form method="get" action="list.php">
                     <span>
-                        <label for="search-input">Search Book Title</label><br>
-                        <input type="text" id="search-input" name="q" value="<?php echo $keyword; ?>" placeholder="Type book title...">
+                        <label for="search-input">Search Title or Author</label><br>
+                        <input type="text" id="search-input" name="q" value="<?php echo $keyword; ?>" placeholder="Type book title or author...">
                     </span>
                     <button type="submit">Search</button>
                 </form>
