@@ -28,6 +28,26 @@ function initDeleteConfirm() {
     });
 }
 
+// ===== Update confirmation (exercise 7.4 no. 1) =====
+// Same submit-event delegation as initDeleteConfirm, but for the Edit form
+// (<form class="form-edit">). Runs after initFormValidation (that listener sits
+// on the form itself, this one on document), so if validation has already
+// cancelled the submit, the confirmation is not shown at all.
+function initUpdateConfirm() {
+    document.addEventListener("submit", function (e) {
+        const form = e.target;
+        if (!form.classList.contains("form-edit")) return;
+        if (e.defaultPrevented) return;
+
+        const firstInput = form.querySelector("input[type='text']");
+        const name = firstInput ? firstInput.defaultValue : "this data";
+        const confirmed = confirm("Save the changes to \"" + name + "\"?");
+        if (!confirmed) {
+            e.preventDefault();
+        }
+    });
+}
+
 // ===== Real-time table filter/search =====
 function initTableFilter() {
     const input = document.getElementById("search-input");
@@ -114,6 +134,7 @@ function initFormValidation() {
 document.addEventListener("DOMContentLoaded", function () {
     initNavToggle();
     initDeleteConfirm();
+    initUpdateConfirm();
     initTableFilter();
     initFormValidation();
 });

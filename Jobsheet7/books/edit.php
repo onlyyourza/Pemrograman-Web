@@ -28,7 +28,7 @@ if (!$book) {
                 <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo $flash['message']; ?></p>
             <?php endif; ?>
 
-            <form id="add-form" method="post" action="process_edit.php">
+            <form id="add-form" class="form-edit" method="post" action="process_edit.php">
                 <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
                 <p>
                     <label for="title">Title</label><br>
